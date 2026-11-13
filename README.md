@@ -52,7 +52,3 @@ chats/{chatId}/messages/{messageId}
 chats/{chatId}/lastSeen/{userId}
   userId, messageId, createdAt, updatedAt
 ```
-
-## Important security note
-
-The task contract does not specify authentication. The APIs accept user IDs in request bodies, so membership and sender ownership are checked but the IDs are not authenticated identities. For production, verify Firebase Authentication ID tokens and derive the caller's user ID from the verified token. The Admin SDK bypasses Firestore client security rules; keep service-account credentials secret.
