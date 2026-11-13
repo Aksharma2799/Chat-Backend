@@ -28,7 +28,6 @@ The HTTP server uses Node.js built-in `http` module. SQL is executed directly us
 
 Development mode: `npm run dev`.
 
-Detailed instructions and API examples: [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md).
 
 ## Endpoints
 
