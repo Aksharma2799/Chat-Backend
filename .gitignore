@@ -1,0 +1,32 @@
+
+# Dependencies
+node_modules/
+
+# Compiled TypeScript
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Firebase credentials
+firebase-service-account.json
+*service-account*.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+
+# IDE files
+.idea/
+.vscode/
+
+# Temporary files
+temp.md
+
+# Local setup documentation (if private)
+SETUP_GUIDE.md
