@@ -1,0 +1,40 @@
+<header
+  class="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-900"
+>
+  <div class="flex min-w-0 items-center gap-3">
+    <button
+      id="back-to-chats"
+      class="icon-button md:hidden"
+      aria-label="Back to chats"
+    >
+      ←
+    </button>
+
+    <div
+      class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 font-bold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"
+    >
+      <span id="chat-user-avatar">
+        <%= (otherUserName || "U").charAt(0).toUpperCase() %>
+      </span>
+    </div>
+
+    <div class="min-w-0">
+      <h2 id="chat-user-name" class="truncate text-sm font-bold">
+        <%= otherUserName || "Conversation" %>
+      </h2>
+
+      <p id="chat-user-status" class="text-xs text-slate-400">Conversation</p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-1">
+    <button
+      id="refresh-chat"
+      class="icon-button"
+      title="Refresh messages"
+      aria-label="Refresh messages"
+    >
+      ↻
+    </button>
+  </div>
+</header>

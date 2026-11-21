@@ -34,6 +34,8 @@ Detailed instructions and API examples: [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.m
 
 | Method | Endpoint                                | Description                      |
 | ------ | --------------------------------------- | -------------------------------- |
+| GET    | `/users`                                | List demo users                  |
+| POST   | `/users`                                | Add a demo user                  |
 | POST   | `/chat/create`                          | Create or retrieve 1:1 chat      |
 | POST   | `/chat/:chatId/message/send`            | Send message                     |
 | GET    | `/chat/:chatId/messages?limit=50`       | Read messages in timestamp order |
@@ -55,4 +57,4 @@ chats/{chatId}/lastSeen/{userId}
 
 ## Important security note
 
-The task contract does not specify authentication. The APIs accept user IDs in request bodies, so membership and sender ownership are checked but the IDs are not authenticated identities. For production, verify Firebase Authentication ID tokens and derive the caller's user ID from the verified token. The Admin SDK bypasses Firestore client security rules; keep service-account credentials secret.
+The user switcher and user-creation endpoint are for local demos only; this project does not authenticate users, so anyone with access can switch to any stored user. The APIs accept user IDs in request bodies, so membership and sender ownership are checked but the IDs are not authenticated identities. For production, verify Firebase Authentication ID tokens and derive the caller's user ID from the verified token. The Admin SDK bypasses Firestore client security rules; keep service-account credentials secret.

@@ -2,6 +2,10 @@ export interface CreateChatBody {
   userAId: string;
   userBId: string;
 }
+export interface CreateUserBody {
+  displayName: string;
+  email?: string | null;
+}
 export interface SendMessageBody {
   senderId: string;
   text: string;

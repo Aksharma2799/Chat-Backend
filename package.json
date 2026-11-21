@@ -1,3 +1,4 @@
+
 {
   "name": "chat-backend",
   "version": "1.0.0",
@@ -6,15 +7,23 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node --env-file=.env dist/server.js",
-    "dev": "npm run build && node --watch --env-file=.env dist/server.js"
+    "build:css": "tailwindcss -i ./public/css/styles.css -o ./public/css/output.css",
+    "watch:css": "tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --watch",
+    "test": "node --test tests/*.test.js",
+    "test:watch": "node --test --watch tests/*.test.js"
   },
   "dependencies": {
+    "ejs": "^3.1.10",
     "firebase-admin": "^13.10.0",
     "pg": "^8.23.1"
   },
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
     "@types/node": "^22.10.5",
     "@types/pg": "^8.11.10",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.7.2"
   }
 }

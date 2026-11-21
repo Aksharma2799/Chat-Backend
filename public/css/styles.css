@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+
+  button, input, textarea {
+    @apply outline-none;
+  }
+}
+
+@layer components {
+  .icon-button {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl
+    text-slate-500 transition hover:bg-slate-100
+    hover:text-slate-900 dark:text-slate-400
+    dark:hover:bg-slate-800 dark:hover:text-white;
+  }
+
+  .message-input {
+    @apply w-full resize-none bg-transparent text-sm
+    text-slate-800 placeholder:text-slate-400
+    dark:text-slate-100 dark:placeholder:text-slate-500;
+  }
+}

@@ -6,6 +6,29 @@ import { MessageDocument } from "./types";
 const messagesRef = (chatId: string) =>
   firestore.collection("chats").doc(chatId).collection("messages");
 
+export async function listUsers() {
+  const result = await pool.query(
+    `SELECT id, display_name AS "displayName", email
+     FROM users
+     ORDER BY display_name NULLS LAST, email NULLS LAST, id`
+  );
+  return result.rows;
+}
+
+export async function createUser(displayName: string, email: string | null) {
+  const result = await pool.query(
+    `INSERT INTO users (display_name, email)
+     VALUES ($1, $2)
+     ON CONFLICT (email) DO NOTHING
+     RETURNING id, display_name AS "displayName", email`,
+    [displayName, email]
+  );
+  if (result.rowCount === 0) {
+    throw new HttpError(409, "A user with this email already exists");
+  }
+  return result.rows[0];
+}
+
 async function ensureMember(chatId: string, userId: string): Promise<void> {
   const result = await pool.query(
     "SELECT 1 FROM chat_members WHERE chat_id = $1 AND user_id = $2",

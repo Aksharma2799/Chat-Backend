@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ChatSpace | Messaging</title>
+
+    <link rel="stylesheet" href="/css/output.css" />
+
+    <script id="chat-config" type="application/json">
+      <%- JSON.stringify({
+        chatId,
+        userId,
+        otherUserId,
+        currentUserName,
+        otherUserName
+      }).replace(/</g, "\\u003c") %>
+    </script>
+    <script>
+      window.CHAT_CONFIG = JSON.parse(
+        document.getElementById("chat-config").textContent,
+      );
+    </script>
+  </head>
+
+  <body
+    class="h-full overflow-hidden bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100"
+  >
+    <div class="flex h-screen w-full p-0 md:p-4">
+      <main
+        class="mx-auto flex h-full w-full max-w-[1600px] overflow-hidden bg-white shadow-xl md:rounded-2xl dark:bg-slate-900"
+      >
+        <!-- Sidebar -->
+        <aside
+          id="sidebar"
+          class="flex w-full flex-col border-r border-slate-200 md:w-[340px] md:flex-shrink-0 dark:border-slate-800"
+        >
+          <%- include("partials/sidebar") %>
+        </aside>
+
+        <!-- Chat area -->
+        <section id="chat-area" class="hidden min-w-0 flex-1 flex-col">
+          <%- include("partials/chat-header") %>
+
+          <!-- Messages -->
+          <div
+            id="messages"
+            class="flex flex-1 flex-col gap-4 overflow-y-auto bg-slate-50 p-4 md:p-6 dark:bg-slate-950"
+          >
+            <div id="loading-messages" class="m-auto text-sm text-slate-400">
+              Loading messages...
+            </div>
+          </div>
+
+          <!-- Message composer -->
+          <form
+            id="message-form"
+            class="border-t border-slate-200 bg-white p-3 md:p-4 dark:border-slate-800 dark:bg-slate-900"
+          >
+            <div
+              class="flex items-end gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-2 focus-within:border-indigo-400 dark:border-slate-700 dark:bg-slate-800"
+            >
+              <textarea
+                id="message-input"
+                rows="1"
+                maxlength="5000"
+                placeholder="Write a message..."
+                class="message-input max-h-32 min-h-10 flex-1 px-3 py-2"
+              ></textarea>
+
+              <button
+                type="submit"
+                id="send-button"
+                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-600 text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+                aria-label="Send message"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m22 2-7 20-4-9-9-4Z" />
+                  <path d="M22 2 11 13" />
+                </svg>
+              </button>
+            </div>
+
+            <p class="mt-2 text-center text-xs text-slate-400">
+              Press Enter to send · Shift + Enter for a new line
+            </p>
+          </form>
+        </section>
+
+        <!-- Empty state -->
+        <section
+          id="empty-state"
+          class="hidden min-h-0 flex-1 flex-col items-center justify-start overflow-y-auto bg-slate-50 px-6 py-4 text-center dark:bg-slate-950"
+        >
+          <h2 class="text-xl font-bold">Welcome to ChatSpace</h2>
+
+          <p class="mt-2 max-w-md text-sm text-slate-500">
+            Select a demo account in the sidebar, then start a conversation or
+            choose one of its existing chats.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <!-- Toast notification -->
+    <div
+      id="toast"
+      class="fixed bottom-5 left-1/2 hidden -translate-x-1/2 rounded-xl bg-slate-900 px-5 py-3 text-sm text-white shadow-lg"
+      role="status"
+    ></div>
+
+    <!-- JavaScript -->
+    <script src="/js/api.js"></script>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>
